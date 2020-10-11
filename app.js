@@ -6,7 +6,8 @@ let minNum = 1,
 
 const uiForm = document.querySelector("form"),
   uiGuessNumber = document.querySelector("#guess-number"),
-  uiMessage = document.querySelector("#message");
+  uiMessage = document.querySelector("#message"),
+  uiButton = document.querySelector("button");
 
 /* 
 
@@ -43,8 +44,7 @@ const uiForm = document.querySelector("form"),
   // FORM SUBMIT
   uiForm.addEventListener("submit", validateGuess);
   // PLAY AGAIN
-  const game = document.querySelector(".container");
-  game.addEventListener("mousedown", playAgain);
+  uiButton.addEventListener("mousedown", playAgain);
   // SET WINNING NUMBER
   setWinningNumber();
 })();
@@ -96,11 +96,10 @@ function validateGuess(event) {
 */
 
 function gameOver(won) {
-  won ? color = 'green' : color = 'red';
+  won ? (color = "green") : (color = "red");
   uiGuessNumber.disabled = true;
   uiGuessNumber.style.backgroundColor = "#f5f5f5";
   // CHANGING BUTTON
-  const uiButton = document.querySelector("button");
   uiButton.textContent = "Play Again";
   uiButton.classList.add("button-primary");
   uiButton.style.backgroundColor = color;
@@ -146,8 +145,9 @@ function setMessage(result, message) {
 */
 
 function playAgain(event) {
-    if (event.target.classList.contains("button-primary")) {
-        window.location.reload();   
-    }
+  if (event.target.classList.contains("button-primary")) {
+    uiGuessNumber.value = "";
+    window.location.reload();
+  }
   event.preventDefault();
 }
